@@ -83,7 +83,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
     var intervalId
     function updateGraphType(type) {
         let index = 0
-        intervalId = setInterval(()=> update((index++) % dat.length, type), 700);
+        intervalId = setInterval(()=> update((index++) % dat.length, type), 1300);
     }
     
     // radio button are selected
@@ -92,5 +92,5 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
         updateGraphType(this.value);
     });
 
-    intervalId = setInterval(()=> update((++index) % dat.length, "total_global_sale"), 700);
+    intervalId = setInterval(()=> update((++index) % dat.length, "total_global_sale"), 1300);
 });
