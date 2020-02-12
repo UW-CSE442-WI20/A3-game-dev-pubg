@@ -1,4 +1,4 @@
-d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/master/src/person_fixed_with_score.json").then( dat => {
+d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/master/src/game_data.json").then( dat => {
     function draw() {
         // define the svg
         d3.selectAll("svg > *").remove();
@@ -26,15 +26,15 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
             d3.selectAll("svg > *").remove();
             svg = d3.select("svg").append("g");
             dataEntry = d;
-            dataValue = dataEntry["game"].sort((x, y) => y.user_score - x.user_score);
-            maxSale = dataValue[0].user_score;
+            dataValue = dataEntry["game"].sort((x, y) => y.game_global_sale - x.game_global_sale);
+            maxSale = dataValue[0].game_global_sale;
             maxHeight = (rect.marginV + rect.height) * (dataValue.length - 1) + rect.marginT;
             groups = svg.selectAll("g").data(dataValue).enter().append("g").style("cursor", "pointer");
             let gamelabels = groups.append("text").text(d => d.game_name).attr("x", rect.marginH).style("font-size", `${font.height}px`).on("click", () => draw());
             let rects = groups.append("rect").attr("x", rect.marginH + font.margin).attr("height", rect.height);
             let scale = d3.scaleLinear().domain([0, maxSale]).range([0, 300]);
             gamelabels.data(dataValue, d => d.game_name).transition().duration(600).attr("y", (_, i) => (rect.marginV + rect.height) * i + rect.marginT + rect.height / 2);
-            rects.data(dataValue, d => d.game_name).transition().duration(600).attr("y", (_, i) => (rect.marginV + rect.height) * i + rect.marginT).attr("width", d => scale(d.user_score));
+            rects.data(dataValue, d => d.game_name).transition().duration(600).attr("y", (_, i) => (rect.marginV + rect.height) * i + rect.marginT).attr("width", d => scale(d.game_global_sale));
             let xScale = d3.scaleLinear().domain([0, maxSale]).range([0, 300]);
             let xAxis = d3.axisBottom(xScale).ticks(10).tickFormat(d3.format("d"));
             svg.append("g").attr("transform", "translate(" + (rect.marginH + font.margin) + "," + (maxHeight + rect.height + rect.marginV) + ")").call(xAxis);
