@@ -14,8 +14,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
     function draw() {
         // define the svg
         d3.selectAll("svg > *").remove();
-        document.getElementById("play_pause_button").style.visibility = "visible";
-        document.getElementById("year_slider").style.visibility = "visible";   
+        document.getElementById("controller").style.visibility = "visible";
         d3.select("#play_pause_button").classed("paused", false)
 
         const rect = {height: 20, marginV: 10, marginH: 10, marginT: 40};
@@ -38,8 +37,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
 
         // load labels and rects to svg
         let labels = groups.append("text").text(d => d.publisher).attr("id", "label").attr("x", rect.marginH).style("font-size", `${font.height}px`).on("click", function (d) {
-            document.getElementById("play_pause_button").style.visibility = "hidden";   
-            document.getElementById("year_slider").style.visibility = "hidden";   
+            document.getElementById("controller").style.visibility = "hidden";    
             stop = true;
             clearInterval(intervalId);
             d3.selectAll("svg > *").remove();
@@ -125,7 +123,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
 
         function updateGraphType(type) {
             index = 0;
-            intervalId = setInterval(() => update((index++) % dat.length, type), 700);
+            intervalId = setInterval(() => update((index++) % dat.length, type), 1300);
         }
 
         // radio button are selected
@@ -140,7 +138,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
                 for (var i = 1; i <= intervalId; i++)
                     clearInterval(i);
             } else {
-                intervalId = setInterval(() => update((index++) % dat.length,  d3.select("input[name='type']:checked").node().value), 700);
+                intervalId = setInterval(() => update((index++) % dat.length,  d3.select("input[name='type']:checked").node().value), 1300);
             }
         });
 
@@ -151,7 +149,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
             update(index % dat.length,  d3.select("input[name='type']:checked").node().value)
         });
 
-        intervalId = setInterval(() => update((++index) % dat.length, "total_global_sale"), 700);
+        intervalId = setInterval(() => update((++index) % dat.length, "total_global_sale"), 1300);
     }
     draw();
 });
