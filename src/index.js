@@ -119,7 +119,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
         var intervalId;
 
         function updateGraphType(type) {
-            let index = 0;
+            index = 0;
             intervalId = setInterval(() => update((index++) % dat.length, type), 700);
         }
 
