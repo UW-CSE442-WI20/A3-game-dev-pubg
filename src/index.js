@@ -128,9 +128,10 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
         var intervalId;
 
         function updateGraphType(type) {
-            index = 0;
-            update((index++) % dat.length, type)
-            intervalId = setInterval(() => update((index++) % dat.length, type), 700);
+            update((index) % dat.length, type)
+            clearInterval(intervalId);
+            d3.select("#play_pause_button").classed("paused", true)
+            // intervalId = setInterval(() => update((index++) % dat.length, type), 700);
         }
 
         // radio button are selected
@@ -160,8 +161,8 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
             index = this.value - 2003;
             update(index % dat.length,  d3.select("input[name='type']:checked").node().value)
         });
-
-        intervalId = setInterval(() => update((++index) % dat.length, d3.select("input[name='type']:checked").node().value), 700);
+        d3.select("#play_pause_button").classed("paused", true)
+        // intervalId = setInterval(() => update((++index) % dat.length, d3.select("input[name='type']:checked").node().value), 700);
     }
     draw();
 });
