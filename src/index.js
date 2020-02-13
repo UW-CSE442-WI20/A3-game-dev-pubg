@@ -28,6 +28,16 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
 
         let dataValue = dataEntry["entities"].sort((x, y) => y.total_global_sale - x.total_global_sale);
         let maxSale = dataValue[0].total_global_sale;
+        if (d3.select("input[name='type']:checked").node().value === "average_global_sale") {
+            maxSale = dataValue[0].average_global_sale;
+            dataValue = dataEntry["entities"].sort((x, y) => y.average_global_sale - x.average_global_sale);
+        } else if (d3.select("input[name='type']:checked").node().value === "average_user_score") {
+            maxSale = dataValue[0].average_user_score;
+            dataValue = dataEntry["entities"].sort((x, y) => y.average_user_score - x.average_user_score);
+        } else if (d3.select("input[name='type']:checked").node().value === "average_critic_score") {
+            maxSale = dataValue[0].average_critic_score;
+            dataValue = dataEntry["entities"].sort((x, y) => y.average_critic_score - x.average_critic_score);
+        }
         let maxlength = 0;
         for (let i = 0; i < dataValue.length; i++) {
             maxlength = Math.max(maxlength, dataValue[i].publisher.length);
@@ -57,7 +67,6 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
             maxHeight = (rect.marginV + rect.height) * (dataValue.length - 1) + rect.marginT;
             groups = svg.selectAll("g").data(dataValue).enter().append("g").style("cursor", "pointer").on("click", () => {
                 draw();
-                index--;
             });
             let gamelabels = groups.append("text").text(d => d.game_name).attr("x", rect.marginH).style("font-size", `${font.height}px`);
             let rects = groups.append("rect").attr("x", rect.marginH + font.margin).attr("height", rect.height).style("fill", "#69b3a2");
