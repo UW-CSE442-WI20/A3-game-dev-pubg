@@ -20,7 +20,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
 
         const rect = {height: 20, marginV: 10, marginH: 10, marginT: 40};
         let mar = (document.body.clientWidth - 750)/ 2;
-        let svg = d3.select("svg").append("g")
+        let svg = d3.select("svg").append("g");
         let stop = false;
 
         // load the initial data
@@ -43,7 +43,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
         for (let i = 0; i < dataValue.length; i++) {
             maxlength = Math.max(maxlength, dataValue[i].publisher.length);
         }
-        let font = {height: 14, margin: 8 * maxlength};
+        let font = {height: 13, margin: 7.5 * maxlength};
 
         let maxHeight = (rect.marginV + rect.height) * (dataValue.length - 1) + rect.marginT;
 
@@ -72,26 +72,26 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
                 for (let i = 0; i < dataValue.length; i++) {
                     maxlength = Math.max(maxlength, dataValue[i].game_name.length);
                 }
-                font = {height: 14, margin: 7.5 * maxlength};
+                font = {height: 12, margin: 6.8 * maxlength};
                 maxHeight = (rect.marginV + rect.height) * (dataValue.length - 1) + rect.marginT;
                 groups = svg.selectAll("g").data(dataValue).enter().append("g").style("cursor", "pointer").on("click", () => {
                     draw();
                 });
                 let gamelabels = groups.append("text").text(d => d.game_name).attr("x", rect.marginH).style("font-size", `${font.height}px`);
                 let rects = groups.append("rect").attr("x", rect.marginH + font.margin).attr("height", rect.height).style("fill", "#f95e0a");
-                let scale = d3.scaleLinear().domain([0, maxSale]).range([0, 500]);
+                let scale = d3.scaleLinear().domain([0, maxSale]).range([0, 400]);
                 gamelabels.data(dataValue, d => d.game_name).transition().duration(600).attr("y", (_, i) => (rect.marginV + rect.height) * i + rect.marginT + rect.height / 2);
                 rects.data(dataValue, d => d.game_name).transition().duration(600).attr("y", (_, i) => (rect.marginV + rect.height) * i + rect.marginT).attr("width", d => scale(d.game_global_sale));
-                let xScale = d3.scaleLinear().domain([0, maxSale]).range([0, 500]);
+                let xScale = d3.scaleLinear().domain([0, maxSale]).range([0, 400]);
                 let xAxis = d3.axisBottom(xScale).ticks(10).tickFormat(d3.format(".1f"));
                 svg.append("g").attr("transform", "translate(" + (rect.marginH + font.margin) + "," + (maxHeight + rect.height + rect.marginV) + ")").call(xAxis);
                 svg.append("text")
-                    .attr("x", rect.marginH + font.margin + 520).attr("y", maxHeight + rect.height + rect.marginV + 5)
+                    .attr("x", rect.marginH + font.margin + 415).attr("y", maxHeight + rect.height + rect.marginV + 5)
                     .attr("id", "legend")
                     .text("Million USD")
                     .style("font-size", "13");
                 svg.append("text")
-                    .attr("x", rect.marginH + font.margin / 2 + 80).attr("y", rect.marginV + 5)
+                    .attr("x", rect.marginH).attr("y", rect.marginV + 5)
                     .text("All game published by " + d.publisher + " in " + (index + 2003))
                     .style("font-size", "20");
             } else {
