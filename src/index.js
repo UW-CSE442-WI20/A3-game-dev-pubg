@@ -24,7 +24,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
 
         // load the initial data
         
-        let dataEntry = dat[index];
+        let dataEntry = dat[index % dat.length];
 
         let dataValue = dataEntry["entities"].sort((x, y) => y.total_global_sale - x.total_global_sale);
         let maxSale = dataValue[0].total_global_sale;
@@ -47,7 +47,10 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
             maxSale = dataValue[0].game_global_sale;
             maxHeight = (rect.marginV + rect.height) * (dataValue.length - 1) + rect.marginT;
             groups = svg.selectAll("g").data(dataValue).enter().append("g").style("cursor", "pointer");
-            let gamelabels = groups.append("text").text(d => d.game_name).attr("x", rect.marginH).style("font-size", `${font.height}px`).on("click", () => draw());
+            let gamelabels = groups.append("text").text(d => d.game_name).attr("x", rect.marginH).style("font-size", `${font.height}px`).on("click", () => {
+                draw();
+                index--;
+            });
             let rects = groups.append("rect").attr("x", rect.marginH + font.margin).attr("height", rect.height);
             let scale = d3.scaleLinear().domain([0, maxSale]).range([0, 300]);
             gamelabels.data(dataValue, d => d.game_name).transition().duration(600).attr("y", (_, i) => (rect.marginV + rect.height) * i + rect.marginT + rect.height / 2);
@@ -143,9 +146,9 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
         });
 
         d3.select("#year_slider").on("input", function() {
-            d3.select("#play_pause_button").classed("paused", true)
+            d3.select("#play_pause_button").classed("paused", true);
             clearInterval(intervalId);
-            index = this.value - 2003
+            index = this.value - 2003;
             update(index % dat.length,  d3.select("input[name='type']:checked").node().value)
         });
 
