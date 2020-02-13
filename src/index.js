@@ -91,7 +91,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
                     .text("Million USD")
                     .style("font-size", "13");
                 svg.append("text")
-                    .attr("x", rect.marginH + font.margin / 2 + 130).attr("y", rect.marginV + 10)
+                    .attr("x", rect.marginH + font.margin / 2 + 80).attr("y", rect.marginV + 5)
                     .text("All game published by " + d.publisher + " in " + (index + 2003))
                     .style("font-size", "20");
             } else {
