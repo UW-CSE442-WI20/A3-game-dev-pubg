@@ -42,7 +42,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
         for (let i = 0; i < dataValue.length; i++) {
             maxlength = Math.max(maxlength, dataValue[i].publisher.length);
         }
-        let font = {height: 14, margin: 7.3 * maxlength};
+        let font = {height: 14, margin: 8 * maxlength};
 
         let maxHeight = (rect.marginV + rect.height) * (dataValue.length - 1) + rect.marginT;
 
@@ -60,6 +60,9 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
                 svg = d3.select("svg").append("g").attr("transform", "translate(" + mar + ", 0)");
                 dataEntry = d;
                 dataValue = dataEntry["game"].sort((x, y) => y.game_global_sale - x.game_global_sale);
+                if (dataValue.length > 20) {
+                    dataValue = dataValue.slice(0, 20)
+                }
                 maxSale = dataValue[0].game_global_sale;
                 maxlength = 0;
                 for (let i = 0; i < dataValue.length; i++) {
@@ -71,7 +74,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
                     draw();
                 });
                 let gamelabels = groups.append("text").text(d => d.game_name).attr("x", rect.marginH).style("font-size", `${font.height}px`);
-                let rects = groups.append("rect").attr("x", rect.marginH + font.margin).attr("height", rect.height).style("fill", "#69b3a2");
+                let rects = groups.append("rect").attr("x", rect.marginH + font.margin).attr("height", rect.height).style("fill", "#f95e0a");
                 let scale = d3.scaleLinear().domain([0, maxSale]).range([0, 500]);
                 gamelabels.data(dataValue, d => d.game_name).transition().duration(600).attr("y", (_, i) => (rect.marginV + rect.height) * i + rect.marginT + rect.height / 2);
                 rects.data(dataValue, d => d.game_name).transition().duration(600).attr("y", (_, i) => (rect.marginV + rect.height) * i + rect.marginT).attr("width", d => scale(d.game_global_sale));
@@ -95,16 +98,16 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
             let scale = d3.scaleLinear().domain([0, maxSale]).range([0, 500]);
             labels.data(dataValue, d => d.publisher).transition().duration(600).attr("y", (_, i) => (rect.marginV + rect.height) * i + rect.marginT + rect.height / 2);
             if (type === "total_global_sale") {
-                d3.selectAll("#rect").style("fill", "#dc143c");
+                d3.selectAll("#rect").style("fill", "#d51c00");
                 rects.data(dataValue, d => d.publisher).transition().duration(600).attr("y", (_, i) => (rect.marginV + rect.height) * i + rect.marginT).attr("width", d => scale(d.total_global_sale));
             } else if (type === "average_global_sale") {
-                d3.selectAll("#rect").style("fill", "#00bfff");
+                d3.selectAll("#rect").style("fill", "#21a0b4");
                 rects.data(dataValue, d => d.publisher).transition().duration(600).attr("y", (_, i) => (rect.marginV + rect.height) * i + rect.marginT).attr("width", d => scale(d.average_global_sale));
             } else if (type === "average_user_score") {
-                d3.selectAll("#rect").style("fill", "#69b3a2");
+                d3.selectAll("#rect").style("fill", "#1f53a3");
                 rects.data(dataValue, d => d.publisher).transition().duration(600).attr("y", (_, i) => (rect.marginV + rect.height) * i + rect.marginT).attr("width", d => scale(d.average_user_score));
             } else if (type === "average_critic_score") {
-                d3.selectAll("#rect").style("fill", "#8a2be2");
+                d3.selectAll("#rect").style("fill", "#fab500");
                 rects.data(dataValue, d => d.publisher).transition().duration(600).attr("y", (_, i) => (rect.marginV + rect.height) * i + rect.marginT).attr("width", d => scale(d.average_critic_score));
             }
             // rerender the axis
