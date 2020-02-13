@@ -16,36 +16,24 @@ body{height:100%;
   background: transparent;
   box-sizing: border-box;
   width: 0;
-  height: 74px;
+  height: 20px;
   border-color: transparent transparent transparent #202020;
   transition: 100ms all ease;
   cursor: pointer;
   border-style: double;
-  border-width: 0px 0 0px 60px;
-}
-.button {
-  border: 0;
-  background: transparent;
-  box-sizing: border-box;
-  width: 0;
-  height: 40px;
-  border-color: transparent transparent transparent #202020;
-  transition: 100ms all ease;
-  cursor: pointer;
-  border-style: double;
-  border-width: 0px 0 0px 30px;
+  border-width: 0px 0 0px 15px;
 }
 .button.paused {
   border-style: solid;
-  border-width: 20px 0 20px 30px;
+  border-width: 10px 0 10px 15px;
 }
 .button:hover {
   border-color: transparent transparent transparent #404040;
 }
 
 .button-container {
-  margin-right: 30;
-  margin-bottom: 20;
+  margin-right: 15;
+  margin-bottom: 30;
 }
 
 
@@ -56,7 +44,7 @@ body{height:100%;
 }
 
 .box-minmax {
-  margin-top: 30px;
+  /* margin-top: px; */
   width: 608px;
   display: flex;
   justify-content: space-between;
@@ -70,6 +58,8 @@ body{height:100%;
 
 .rs-range {
   margin-top: 29px;
+  margin-left: 5px;
+  margin-bottom: 15px;
   width: 600px;
   -webkit-appearance: none;
 }
@@ -98,13 +88,13 @@ body{height:100%;
   box-shadow: none;
   border: 0px solid #ffffff;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
-  height: 42px;
-  width: 22px;
-  border-radius: 22px;
+  height: 20px;
+  width: 11px;
+  border-radius: 5px;
   background: black;
   cursor: pointer;
   -webkit-appearance: none;
-  margin-top: -20px;
+  margin-top: -10px;
 }
 .rs-range::-moz-range-thumb {
   box-shadow: none;
@@ -126,24 +116,23 @@ body{height:100%;
   position: relative;
   transform-origin: center center;
   display: block;
-  width: 98px;
-  height: 98px;
+  width: 49px;
+  height: 49px;
   background: transparent;
   border-radius: 50%;
-  line-height: 30px;
+  line-height: 15px;
   text-align: center;
   font-weight: bold;
-  padding-top: 22px;
+  padding-top: 12px;
   box-sizing: border-box;
-  border: 2px solid black;
-  margin-top: 20px;
-  margin-left: -38px;
+  /* margin-top: 11px; */
+  margin-left: -9px;
   left: attr(value);
   color: black;
   font-style: normal;
   font-weight: normal;
   line-height: normal;
-  font-size: 36px;
+  font-size: 12px;
 }
 .rs-label::after {
   display: block;
