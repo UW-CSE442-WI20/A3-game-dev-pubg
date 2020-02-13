@@ -204,4 +204,3 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
     }
     draw();
 });
-
