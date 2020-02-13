@@ -1,13 +1,13 @@
-$(document).ready(function() {
-    var btn = $(".button");
-    btn.click(function() {
-      btn.toggleClass("paused");
-      return false;
-    });
-  });
-
-var rangeSlider = document.getElementById("rs-range-line");
+var rangeSlider = document.getElementById("year_slider");
 var rangeBullet = document.getElementById("rs-bullet");
+
+rangeSlider.addEventListener("input", showSliderValue, false);
+
+function showSliderValue() {
+  rangeBullet.innerHTML = rangeSlider.value;
+  var bulletPosition = ((rangeSlider.value - rangeSlider.min)/(rangeSlider.max - rangeSlider.min));
+  rangeBullet.style.left = (bulletPosition * 578) + "px";
+}
 
 let index = 0;
 d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/master/src/game_data.json").then( dat => {
@@ -93,10 +93,13 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
         }
 
         if (!stop)
-            updateElements("total_global_sale");
+            updateElements(d3.select("input[name='type']:checked").node().value);
 
         function update(i, type) {
-            document.getElementById("year_slider").value = i % dat.length + 2003;
+            rangeSlider.value = i % dat.length + 2003;
+            rangeBullet.innerHTML = rangeSlider.value;
+            var bulletPosition = ((rangeSlider.value - rangeSlider.min)/(rangeSlider.max - rangeSlider.min));
+            rangeBullet.style.left = (bulletPosition * 578) + "px";
             if (!stop) {
                 // update the data and year
                 dataEntry = dat[i];
@@ -126,7 +129,8 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
 
         function updateGraphType(type) {
             index = 0;
-            intervalId = setInterval(() => update((index++) % dat.length, type), 1300);
+            update((index++) % dat.length, type)
+            intervalId = setInterval(() => update((index++) % dat.length, type), 700);
         }
 
         // radio button are selected
@@ -138,10 +142,15 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
 
         d3.select("#play_pause_button").on("click", function() {
             if (d3.select("#play_pause_button").classed("paused")) {
+                d3.select("#play_pause_button").classed("paused", false)
+            } else {
+                d3.select("#play_pause_button").classed("paused", true)
+            }
+            if (d3.select("#play_pause_button").classed("paused")) {
                 for (var i = 1; i <= intervalId; i++)
                     clearInterval(i);
             } else {
-                intervalId = setInterval(() => update((index++) % dat.length,  d3.select("input[name='type']:checked").node().value), 1300);
+                intervalId = setInterval(() => update((++index) % dat.length,  d3.select("input[name='type']:checked").node().value), 700);
             }
         });
 
@@ -152,7 +161,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
             update(index % dat.length,  d3.select("input[name='type']:checked").node().value)
         });
 
-        intervalId = setInterval(() => update((++index) % dat.length, "total_global_sale"), 1300);
+        intervalId = setInterval(() => update((++index) % dat.length, d3.select("input[name='type']:checked").node().value), 700);
     }
     draw();
 });

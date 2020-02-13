@@ -1,3 +1,16 @@
+p, div, svg {
+  font-family: "Verdana", Geneva, sans-serif;
+}
+body{height:100%;
+  width:100%;
+  background-image:url("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/master/src/background_2_processed.jpg");
+  background-repeat:no-repeat;  /*we want to have one single image not a repeated one*/  
+  background-size:cover;  /*this sets the image to fullscreen covering the whole screen*/  
+  /*css hack for ie*/     
+  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.image.jpg',sizingMethod='scale');
+  -ms-filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(src='image.jpg',sizingMethod='scale')";
+}
+
 .button {
   border: 0;
   background: transparent;
@@ -10,17 +23,34 @@
   border-style: double;
   border-width: 0px 0 0px 60px;
 }
+.button {
+  border: 0;
+  background: transparent;
+  box-sizing: border-box;
+  width: 0;
+  height: 40px;
+  border-color: transparent transparent transparent #202020;
+  transition: 100ms all ease;
+  cursor: pointer;
+  border-style: double;
+  border-width: 0px 0 0px 30px;
+}
 .button.paused {
   border-style: solid;
-  border-width: 37px 0 37px 60px;
+  border-width: 20px 0 20px 30px;
 }
 .button:hover {
   border-color: transparent transparent transparent #404040;
 }
 
+.button-container {
+  margin-right: 30;
+  margin-bottom: 20;
+}
+
+
 .container {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -105,7 +135,7 @@
   font-weight: bold;
   padding-top: 22px;
   box-sizing: border-box;
-  border: 2px solid #fff;
+  border: 2px solid black;
   margin-top: 20px;
   margin-left: -38px;
   left: attr(value);
@@ -116,7 +146,6 @@
   font-size: 36px;
 }
 .rs-label::after {
-  content: "kg";
   display: block;
   font-size: 20px;
   letter-spacing: 0.07em;
