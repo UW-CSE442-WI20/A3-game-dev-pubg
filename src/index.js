@@ -6,8 +6,16 @@ $(document).ready(function() {
     });
   });
 
-var rangeSlider = document.getElementById("rs-range-line");
+var rangeSlider = document.getElementById("year_slider");
 var rangeBullet = document.getElementById("rs-bullet");
+
+rangeSlider.addEventListener("input", showSliderValue, false);
+
+function showSliderValue() {
+  rangeBullet.innerHTML = rangeSlider.value;
+  var bulletPosition = ((rangeSlider.value - rangeSlider.min)/(rangeSlider.max - rangeSlider.min));
+  rangeBullet.style.left = (bulletPosition * 578) + "px";
+}
 
 let index = 0;
 d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/master/src/game_data.json").then( dat => {
@@ -96,7 +104,10 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
             updateElements(d3.select("input[name='type']:checked").node().value);
 
         function update(i, type) {
-            document.getElementById("year_slider").value = i % dat.length + 2003;
+            rangeSlider.value = i % dat.length + 2003;
+            rangeBullet.innerHTML = rangeSlider.value;
+            var bulletPosition = ((rangeSlider.value - rangeSlider.min)/(rangeSlider.max - rangeSlider.min));
+            rangeBullet.style.left = (bulletPosition * 578) + "px";
             if (!stop) {
                 // update the data and year
                 dataEntry = dat[i];
@@ -127,7 +138,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
         function updateGraphType(type) {
             index = 0;
             update((index++) % dat.length, type)
-            intervalId = setInterval(() => update((index++) % dat.length, type), 2000);
+            intervalId = setInterval(() => update((index++) % dat.length, type), 700);
         }
 
         // radio button are selected
@@ -142,7 +153,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
                 for (var i = 1; i <= intervalId; i++)
                     clearInterval(i);
             } else {
-                intervalId = setInterval(() => update((index++) % dat.length,  d3.select("input[name='type']:checked").node().value), 2000);
+                intervalId = setInterval(() => update((++index) % dat.length,  d3.select("input[name='type']:checked").node().value), 700);
             }
         });
 
@@ -153,7 +164,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
             update(index % dat.length,  d3.select("input[name='type']:checked").node().value)
         });
 
-        intervalId = setInterval(() => update((++index) % dat.length, d3.select("input[name='type']:checked").node().value), 2000);
+        intervalId = setInterval(() => update((++index) % dat.length, d3.select("input[name='type']:checked").node().value), 700);
     }
     draw();
 });

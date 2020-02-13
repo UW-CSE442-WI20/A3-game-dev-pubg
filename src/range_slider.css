@@ -1,35 +1,18 @@
-p, div, svg {
-  font-family: "Verdana", Geneva, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.button {
-  border: 0;
-  background: transparent;
-  box-sizing: border-box;
-  width: 0;
-  height: 40px;
-  border-color: transparent transparent transparent #202020;
-  transition: 100ms all ease;
-  cursor: pointer;
-  border-style: double;
-  border-width: 0px 0 0px 30px;
+body {
+  height: 100vh;
+  background-color: #000;
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(180deg, #DB302A 0%, #62186B 100%) no-repeat;
 }
-.button.paused {
-  border-style: solid;
-  border-width: 20px 0 20px 30px;
-}
-.button:hover {
-  border-color: transparent transparent transparent #404040;
-}
-
-.button-container {
-  margin-right: 30;
-  margin-bottom: 20;
-}
-
 
 .container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -46,6 +29,9 @@ p, div, svg {
   margin-left: 10px;
 }
 
+.range-slider {
+  margin-top: 30vh;
+}
 
 .rs-range {
   margin-top: 29px;
@@ -114,20 +100,22 @@ p, div, svg {
   font-weight: bold;
   padding-top: 22px;
   box-sizing: border-box;
-  border: 2px solid black;
+  border: 2px solid #fff;
   margin-top: 20px;
   margin-left: -38px;
   left: attr(value);
-  color: black;
+  color: #fff;
   font-style: normal;
   font-weight: normal;
   line-height: normal;
   font-size: 36px;
 }
 .rs-label::after {
+  content: "kg";
   display: block;
   font-size: 20px;
   letter-spacing: 0.07em;
   margin-top: -2px;
 }
 
+/*# sourceMappingURL=range_slider.css.map */
