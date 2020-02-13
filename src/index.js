@@ -166,7 +166,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
                         .transition()
                         .delay(300)
                         .duration(1)
-                        .text(dataValue[i].average_user_score.toFixed(2))
+                        .text(dataValue[i].average_user_score.toFixed(1))
                         .style("font-size", "10");
                 }
             } else if (type === "average_critic_score") {
@@ -179,7 +179,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
                         .transition()
                         .delay(300)
                         .duration(1)
-                        .text(dataValue[i].average_critic_score.toFixed(2))
+                        .text(dataValue[i].average_critic_score.toFixed(1))
                         .style("font-size", "10");
                 }
             }
