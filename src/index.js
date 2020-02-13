@@ -126,6 +126,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
 
         function updateGraphType(type) {
             index = 0;
+            update((index++) % dat.length, type)
             intervalId = setInterval(() => update((index++) % dat.length, type), 1300);
         }
 
