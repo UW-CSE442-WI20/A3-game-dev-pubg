@@ -51,35 +51,40 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
 
         // load labels and rects to svg
         let labels = groups.append("text").text(d => d.publisher).attr("id", "label").attr("x", rect.marginH).style("font-size", `${font.height}px`).on("click", function (d) {
-            document.getElementById("controller").style.visibility = "hidden";    
-            stop = true;
-            clearInterval(intervalId);
-            d3.selectAll("svg > *").remove();
-            svg = d3.select("svg").append("g").attr("transform", "translate("+mar+", 0)");
-            dataEntry = d;
-            dataValue = dataEntry["game"].sort((x, y) => y.game_global_sale - x.game_global_sale);
-            maxSale = dataValue[0].game_global_sale;
-            maxlength = 0;
-            for (let i = 0; i < dataValue.length; i++) {
-                maxlength = Math.max(maxlength, dataValue[i].game_name.length);
+            if (d["game"].length !== 0) {
+                console.log(d);
+                document.getElementById("controller").style.visibility = "hidden";
+                stop = true;
+                clearInterval(intervalId);
+                d3.selectAll("svg > *").remove();
+                svg = d3.select("svg").append("g").attr("transform", "translate(" + mar + ", 0)");
+                dataEntry = d;
+                dataValue = dataEntry["game"].sort((x, y) => y.game_global_sale - x.game_global_sale);
+                maxSale = dataValue[0].game_global_sale;
+                maxlength = 0;
+                for (let i = 0; i < dataValue.length; i++) {
+                    maxlength = Math.max(maxlength, dataValue[i].game_name.length);
+                }
+                font = {height: 14, margin: 7.5 * maxlength};
+                maxHeight = (rect.marginV + rect.height) * (dataValue.length - 1) + rect.marginT;
+                groups = svg.selectAll("g").data(dataValue).enter().append("g").style("cursor", "pointer").on("click", () => {
+                    draw();
+                });
+                let gamelabels = groups.append("text").text(d => d.game_name).attr("x", rect.marginH).style("font-size", `${font.height}px`);
+                let rects = groups.append("rect").attr("x", rect.marginH + font.margin).attr("height", rect.height).style("fill", "#69b3a2");
+                let scale = d3.scaleLinear().domain([0, maxSale]).range([0, 500]);
+                gamelabels.data(dataValue, d => d.game_name).transition().duration(600).attr("y", (_, i) => (rect.marginV + rect.height) * i + rect.marginT + rect.height / 2);
+                rects.data(dataValue, d => d.game_name).transition().duration(600).attr("y", (_, i) => (rect.marginV + rect.height) * i + rect.marginT).attr("width", d => scale(d.game_global_sale));
+                let xScale = d3.scaleLinear().domain([0, maxSale]).range([0, 500]);
+                let xAxis = d3.axisBottom(xScale).ticks(10).tickFormat(d3.format(".1f"));
+                svg.append("g").attr("transform", "translate(" + (rect.marginH + font.margin) + "," + (maxHeight + rect.height + rect.marginV) + ")").call(xAxis);
+                svg.append("text")
+                    .attr("x", rect.marginH + font.margin).attr("y", maxHeight + rect.height + rect.marginV).attr("fill", "grey")
+                    .style("text-anchor", "middle")
+                    .text("Date");
+            } else {
+                window.alert(d["publisher"] + " published no games this year!");
             }
-            font = {height: 14, margin: 7.5 * maxlength};
-            maxHeight = (rect.marginV + rect.height) * (dataValue.length - 1) + rect.marginT;
-            groups = svg.selectAll("g").data(dataValue).enter().append("g").style("cursor", "pointer").on("click", () => {
-                draw();
-            });
-            let gamelabels = groups.append("text").text(d => d.game_name).attr("x", rect.marginH).style("font-size", `${font.height}px`);
-            let rects = groups.append("rect").attr("x", rect.marginH + font.margin).attr("height", rect.height).style("fill", "#69b3a2");
-            let scale = d3.scaleLinear().domain([0, maxSale]).range([0, 500]);
-            gamelabels.data(dataValue, d => d.game_name).transition().duration(600).attr("y", (_, i) => (rect.marginV + rect.height) * i + rect.marginT + rect.height / 2);
-            rects.data(dataValue, d => d.game_name).transition().duration(600).attr("y", (_, i) => (rect.marginV + rect.height) * i + rect.marginT).attr("width", d => scale(d.game_global_sale));
-            let xScale = d3.scaleLinear().domain([0, maxSale]).range([0, 500]);
-            let xAxis = d3.axisBottom(xScale).ticks(10).tickFormat(d3.format(".1f"));
-            svg.append("g").attr("transform", "translate(" + (rect.marginH + font.margin) + "," + (maxHeight + rect.height + rect.marginV) + ")").call(xAxis);
-            svg.append("text")
-                .attr("x", rect.marginH + font.margin).attr("y", maxHeight + rect.height + rect.marginV).attr("fill", "grey")
-                .style("text-anchor", "middle")
-                .text("Date");
         });
 
         let rects = groups.append("rect").attr("id", "rect").attr("x", rect.marginH + font.margin).attr("height", rect.height);
