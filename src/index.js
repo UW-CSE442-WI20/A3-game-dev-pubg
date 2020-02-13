@@ -20,7 +20,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
 
         const rect = {height: 20, marginV: 10, marginH: 10, marginT: 40};
         let mar = (document.body.clientWidth - 750)/ 2;
-        let svg = d3.select("svg").append("g").attr("transform", "translate("+mar+", 0)");
+        let svg = d3.select("svg").append("g")
         let stop = false;
 
         // load the initial data
@@ -61,7 +61,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
                 stop = true;
                 clearInterval(intervalId);
                 d3.selectAll("svg > *").remove();
-                svg = d3.select("svg").append("g").attr("transform", "translate(" + mar + ", 0)");
+                svg = d3.select("svg").append("g");
                 dataEntry = d;
                 dataValue = dataEntry["game"].sort((x, y) => y.game_global_sale - x.game_global_sale);
                 if (dataValue.length > 20) {

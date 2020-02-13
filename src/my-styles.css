@@ -1,6 +1,7 @@
 p, div, svg {
   font-family: "Verdana", Geneva, sans-serif;
 }
+
 body{height:100%;
   width:100%;
   background-image:url("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/master/src/background_2_processed.jpg");
