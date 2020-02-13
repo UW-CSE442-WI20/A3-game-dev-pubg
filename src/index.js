@@ -49,10 +49,10 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
 
 
         // load data to svg
-        let groups = svg.selectAll("g").data(dataValue).enter().append("g").style("cursor", "pointer");
+        let groups = svg.selectAll("g").data(dataValue).enter().append("g")
 
         // load labels and rects to svg
-        let labels = groups.append("text").text(d => d.publisher).attr("id", "label").attr("x", rect.marginH).style("font-size", `${font.height}px`).on("click", function (d) {
+        let labels = groups.append("text").text(d => d.publisher).attr("class", "label").attr("x", rect.marginH).style("cursor", "pointer").style("fill", 'rgb(33, 161, 280)').style("font-size", `${font.height}px`).on("click", function (d) {
             if (d["game"].length !== 0) {
                 console.log(d);
                 console.log(index);
@@ -77,7 +77,13 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
                 groups = svg.selectAll("g").data(dataValue).enter().append("g").style("cursor", "pointer").on("click", () => {
                     draw();
                 });
-                let gamelabels = groups.append("text").text(d => d.game_name).attr("x", rect.marginH).style("font-size", `${font.height}px`);
+                let gamelabels = groups.append("text").text(d => d.game_name).attr("x", rect.marginH).style("fill", 'rgb(33, 161, 280)').style("font-size", `${font.height}px`).on("mouseover", function(d) {
+                    d3.select(this).style("fill", "rgb(213, 28, 0)")
+                    d3.select(this).style("text-decoration", "underline")
+                }).on("mouseout", function(d) {
+                    d3.select(this).style("fill", "rgb(33, 161, 280)")
+                    d3.select(this).style("text-decoration", "none")
+                });
                 let rects = groups.append("rect").attr("x", rect.marginH + font.margin).attr("height", rect.height).style("fill", "#f95e0a");
                 let scale = d3.scaleLinear().domain([0, maxSale]).range([0, 400]);
                 if (maxlength > 40) {
@@ -121,8 +127,13 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
             } else {
                 window.alert(d["publisher"] + " published no games this year!");
             }
+        }).on("mouseover", function(d) {
+            d3.select(this).style("fill", "rgb(213, 28, 0)")
+            d3.select(this).style("text-decoration", "underline")
+        }).on("mouseout", function(d) {
+            d3.select(this).style("fill", "rgb(33, 161, 280)")
+            d3.select(this).style("text-decoration", "none")
         });
-
         let rects = groups.append("rect").attr("id", "rect").attr("x", rect.marginH + font.margin).attr("height", rect.height);
 
         // type means the which radio button is checked
