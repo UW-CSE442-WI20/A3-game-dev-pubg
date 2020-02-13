@@ -201,7 +201,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
                 for (var i = 1; i <= intervalId; i++)
                     clearInterval(i);
             } else {
-                intervalId = setInterval(() => update((++index) % dat.length,  d3.select("input[name='type']:checked").node().value), 2000);
+                intervalId = setInterval(() => update((++index) % dat.length,  d3.select("input[name='type']:checked").node().value), 1500);
             }
         });
 
