@@ -45,10 +45,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
         let font = {height: 14, margin: 8 * maxlength};
 
         let maxHeight = (rect.marginV + rect.height) * (dataValue.length - 1) + rect.marginT;
-        svg.append("text")
-            .attr("x", rect.marginH + font.margin + 100).attr("y", rect.marginV + 10)
-            .text("Total sale for each company")
-            .style("font-size", "20");
+
 
         // load data to svg
         let groups = svg.selectAll("g").data(dataValue).enter().append("g").style("cursor", "pointer");
@@ -92,9 +89,8 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
                     .text("Million USD")
                     .style("font-size", "13");
                 svg.append("text")
-                    .attr("x", rect.marginH + font.margin + 520).attr("y", maxHeight + rect.height + rect.marginV - 50)
-                    .attr("id", "legend")
-                    .text(index + 2003)
+                    .attr("x", rect.marginH + font.margin / 2 + 130).attr("y", rect.marginV + 10)
+                    .text("All game published by " + d.publisher + " in " + (index + 2003))
                     .style("font-size", "20");
             } else {
                 window.alert(d["publisher"] + " published no games this year!");
