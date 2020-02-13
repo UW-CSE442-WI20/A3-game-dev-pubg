@@ -245,6 +245,10 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
           return scale(d.game_global_sale);
         });
 
+        for (var _i2 = 0; _i2 < dataValue.length; _i2++) {
+          svg.append("text").attr("x", scale(dataValue[_i2].game_global_sale) + rect.marginH + font.margin + 5).attr("y", (rect.marginV + rect.height) * _i2 + rect.marginT + 12).attr("id", "num").transition().delay(300).duration(1).text(dataValue[_i2].game_global_sale.toFixed(2)).style("font-size", "10");
+        }
+
         var xScale = d3.scaleLinear().domain([0, maxSale]).range([0, 400]);
 
         if (maxlength > 40) {
@@ -284,6 +288,10 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
         }).attr("width", function (d) {
           return scale(d.total_global_sale);
         });
+
+        for (var _i3 = 0; _i3 < dataValue.length; _i3++) {
+          svg.append("text").attr("x", scale(dataValue[_i3].total_global_sale) + rect.marginH + font.margin + 5).attr("y", (rect.marginV + rect.height) * _i3 + rect.marginT + 12).attr("id", "num").transition().delay(300).duration(1).text(dataValue[_i3].total_global_sale.toFixed(2)).style("font-size", "10");
+        }
       } else if (type === "average_global_sale") {
         d3.selectAll("#rect").style("fill", "#21a0b4");
         rects.data(dataValue, function (d) {
@@ -293,6 +301,10 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
         }).attr("width", function (d) {
           return scale(d.average_global_sale);
         });
+
+        for (var _i4 = 0; _i4 < dataValue.length; _i4++) {
+          svg.append("text").attr("x", scale(dataValue[_i4].average_global_sale) + rect.marginH + font.margin + 5).attr("y", (rect.marginV + rect.height) * _i4 + rect.marginT + 12).attr("id", "num").transition().delay(300).duration(1).text(dataValue[_i4].average_global_sale.toFixed(2)).style("font-size", "10");
+        }
       } else if (type === "average_user_score") {
         d3.selectAll("#rect").style("fill", "#1f53a3");
         rects.data(dataValue, function (d) {
@@ -302,6 +314,10 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
         }).attr("width", function (d) {
           return scale(d.average_user_score);
         });
+
+        for (var _i5 = 0; _i5 < dataValue.length; _i5++) {
+          svg.append("text").attr("x", scale(dataValue[_i5].average_user_score) + rect.marginH + font.margin + 5).attr("y", (rect.marginV + rect.height) * _i5 + rect.marginT + 12).attr("id", "num").transition().delay(300).duration(1).text(dataValue[_i5].average_user_score.toFixed(2)).style("font-size", "10");
+        }
       } else if (type === "average_critic_score") {
         d3.selectAll("#rect").style("fill", "#fab500");
         rects.data(dataValue, function (d) {
@@ -311,6 +327,10 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
         }).attr("width", function (d) {
           return scale(d.average_critic_score);
         });
+
+        for (var _i6 = 0; _i6 < dataValue.length; _i6++) {
+          svg.append("text").attr("x", scale(dataValue[_i6].average_critic_score) + rect.marginH + font.margin + 5).attr("y", (rect.marginV + rect.height) * _i6 + rect.marginT + 12).attr("id", "num").transition().delay(300).duration(1).text(dataValue[_i6].average_critic_score.toFixed(2)).style("font-size", "10");
+        }
       } // rerender the axis
 
 
@@ -370,6 +390,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
 
         d3.select("#axis").remove();
         d3.select("#legend").remove();
+        d3.selectAll("#num").remove();
         updateElements(type);
       }
     }
@@ -444,7 +465,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62044" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62306" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
