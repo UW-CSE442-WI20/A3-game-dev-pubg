@@ -4,7 +4,7 @@ p, div, svg {
 
 body{height:100%;
   width:100%;
-  background-image:url("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/master/src/background_2_processed.jpg");
+  background-image:url("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/master/src/background_3_processed.jpg");
   background-repeat:no-repeat;  /*we want to have one single image not a repeated one*/  
   background-size:cover;  /*this sets the image to fullscreen covering the whole screen*/  
   /*css hack for ie*/     
