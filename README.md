@@ -7,7 +7,7 @@ Visit our site at https://uw-cse442-wi20.github.io/A3-game-dev-pubg/!
 
 ### About
 
-Do you want to watch PUBG but with game studios fighting each other? Do you want to know about the player's top choice studio and their best-selling games? Well, you've come to the right place. Choose your Battle Arena of sales figures and ratings, hit the play button and watch the top 20 companies fight for players from 2003 to 2016. 
+Do you want to watch PUBG but with game studios fighting each other? Do you want to know about the player's top choice studio and their best-selling games? Well, you've come to the right place. Choose your battle arena of various sales figures and ratings, hit the play button and watch the top 20 companies fight for players from 2003 to 2016. 
 
 ### Initiative
 
@@ -29,7 +29,7 @@ To make the year-by-year distinctions clearer, we added the auto-play feature th
 
 #### Peek-N-Pop
 
-A game studio can drastically gain market recognition and profits through the release of blockbuster games. 
+A game studio can drastically gain market recognition and profits through the release of blockbuster games. However, a user cannot determine which games contributed this studio's rapid development. Therefore, we introduced Peek-N-Pop. A user can click on the company names to check for top 20 game releases for a particular game studio that year, and can click on any of the game titles to go back to the main view. 
 
 #### Multi-view
 
@@ -37,11 +37,21 @@ We understand that the performance of a game studio cannot be simply measured by
 
 For the two ratings, we calculate the average rating of games released each year. Note that for it is quite common for game studios to release games once in a few years. To resolve this issue where sometimes a game studio won't have data points at all, we introduce the "carry-over" policy where the average rating of a studio will be carried over from last year's data if this studio didn't release games. 
 
+#### Color Scheme
 
+From the reading *39 studies about human perception in 30 minutes*, we learned to pick colors that are easy to the eyes and have similar contrast. For each view, we introduce a different color for the visual pleasure. 
+
+
+
+### Our Team
+
+- **Haoran Yu** - web designer, testing
+- **Yao Dou** - web designer, testing
+- **Bowen Xu** - data preparation, visual designs
 
 ### Sources
 
 [Video Game Sales with Ratings](https://www.kaggle.com/rush4ratio/video-game-sales-with-ratings/kernels)
 
-
+[39 studies about human perception in 30 minutes](https://medium.com/@kennelliott/39-studies-about-human-perception-in-30-minutes-4728f9e31a73)
 
