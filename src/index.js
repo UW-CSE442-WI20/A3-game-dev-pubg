@@ -1,11 +1,3 @@
-$(document).ready(function() {
-    var btn = $(".button");
-    btn.click(function() {
-      btn.toggleClass("paused");
-      return false;
-    });
-  });
-
 var rangeSlider = document.getElementById("year_slider");
 var rangeBullet = document.getElementById("rs-bullet");
 
@@ -149,6 +141,11 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
         });
 
         d3.select("#play_pause_button").on("click", function() {
+            if (d3.select("#play_pause_button").classed("paused")) {
+                d3.select("#play_pause_button").classed("paused", false)
+            } else {
+                d3.select("#play_pause_button").classed("paused", true)
+            }
             if (d3.select("#play_pause_button").classed("paused")) {
                 for (var i = 1; i <= intervalId; i++)
                     clearInterval(i);
