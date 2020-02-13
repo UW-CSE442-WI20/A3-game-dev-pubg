@@ -92,7 +92,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
                     .style("font-size", "13");
                 svg.append("text")
                     .attr("x", rect.marginH).attr("y", rect.marginV + 5)
-                    .text("All game published by " + d.publisher + " in " + (index + 2003))
+                    .text("All game published by " + d.publisher + " in " + (index % dat.length + 2003))
                     .style("font-size", "20");
             } else {
                 window.alert(d["publisher"] + " published no games this year!");
@@ -201,7 +201,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
                 for (var i = 1; i <= intervalId; i++)
                     clearInterval(i);
             } else {
-                intervalId = setInterval(() => update((++index) % dat.length,  d3.select("input[name='type']:checked").node().value), 700);
+                intervalId = setInterval(() => update((++index) % dat.length,  d3.select("input[name='type']:checked").node().value), 2000);
             }
         });
 
