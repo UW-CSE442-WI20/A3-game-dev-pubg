@@ -45,6 +45,10 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
         let font = {height: 14, margin: 8 * maxlength};
 
         let maxHeight = (rect.marginV + rect.height) * (dataValue.length - 1) + rect.marginT;
+        svg.append("text")
+            .attr("x", rect.marginH + font.margin + 100).attr("y", rect.marginV + 10)
+            .text("Total sale for each company")
+            .style("font-size", "20");
 
         // load data to svg
         let groups = svg.selectAll("g").data(dataValue).enter().append("g").style("cursor", "pointer");
@@ -53,6 +57,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
         let labels = groups.append("text").text(d => d.publisher).attr("id", "label").attr("x", rect.marginH).style("font-size", `${font.height}px`).on("click", function (d) {
             if (d["game"].length !== 0) {
                 console.log(d);
+                console.log(index);
                 document.getElementById("controller").style.visibility = "hidden";
                 stop = true;
                 clearInterval(intervalId);
@@ -82,9 +87,15 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
                 let xAxis = d3.axisBottom(xScale).ticks(10).tickFormat(d3.format(".1f"));
                 svg.append("g").attr("transform", "translate(" + (rect.marginH + font.margin) + "," + (maxHeight + rect.height + rect.marginV) + ")").call(xAxis);
                 svg.append("text")
-                    .attr("x", rect.marginH + font.margin).attr("y", maxHeight + rect.height + rect.marginV).attr("fill", "grey")
-                    .style("text-anchor", "middle")
-                    .text("Date");
+                    .attr("x", rect.marginH + font.margin + 520).attr("y", maxHeight + rect.height + rect.marginV + 5)
+                    .attr("id", "legend")
+                    .text("Million USD")
+                    .style("font-size", "13");
+                svg.append("text")
+                    .attr("x", rect.marginH + font.margin + 520).attr("y", maxHeight + rect.height + rect.marginV - 50)
+                    .attr("id", "legend")
+                    .text(index + 2003)
+                    .style("font-size", "20");
             } else {
                 window.alert(d["publisher"] + " published no games this year!");
             }
@@ -124,10 +135,13 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
             }
 
             svg.append("g").attr("id", "axis").attr("transform", "translate(" + (rect.marginH + font.margin) + "," + (maxHeight + rect.height + rect.marginV) + ")").call(xAxis);
-            svg.append("text")
-                .attr("x", rect.marginH + font.margin + 250).attr("y", maxHeight + rect.height + rect.marginV + 30)
-                .attr("id", "legend")
-                .text("Date");
+            if (type === "total_global_sale" || type === "average_global_sale") {
+                svg.append("text")
+                    .attr("x", rect.marginH + font.margin + 520).attr("y", maxHeight + rect.height + rect.marginV + 5)
+                    .attr("id", "legend")
+                    .text("Million USD")
+                    .style("font-size", "13");
+            }
         }
 
         if (!stop)
