@@ -116,7 +116,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
                 }
                 svg.append("text")
                     .attr("x", rect.marginH).attr("y", rect.marginV + 5)
-                    .text("All game published by " + d.publisher + " in " + (index % dat.length + 2003))
+                    .text("Top 20 games published by " + d.publisher + " in " + (index % dat.length + 2003))
                     .style("font-size", "20");
             } else {
                 window.alert(d["publisher"] + " published no games this year!");
