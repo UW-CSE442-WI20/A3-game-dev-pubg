@@ -15,6 +15,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
         // define the svg
         d3.selectAll("svg > *").remove();
         document.getElementById("controller").style.visibility = "visible";
+        document.getElementById("option").style.visibility = "visible";
         d3.select("#play_pause_button").classed("paused", false);
 
         const rect = {height: 20, marginV: 10, marginH: 10, marginT: 40};
@@ -56,6 +57,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
                 console.log(d);
                 console.log(index);
                 document.getElementById("controller").style.visibility = "hidden";
+                document.getElementById("option").style.visibility = "hidden";
                 stop = true;
                 clearInterval(intervalId);
                 d3.selectAll("svg > *").remove();
