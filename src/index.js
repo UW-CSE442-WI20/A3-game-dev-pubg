@@ -87,7 +87,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
                 rects.data(dataValue, d => d.game_name).transition().duration(600).attr("y", (_, i) => (rect.marginV + rect.height) * i + rect.marginT).attr("width", d => scale(d.game_global_sale));
                 for (let i = 0; i < dataValue.length; i++) {
                     svg.append("text")
-                        .attr("x", scale(dataValue[i].game_global_sale) + rect.marginH + font.margin).attr("y", (rect.marginV + rect.height) * i + rect.marginT + 12)
+                        .attr("x", scale(dataValue[i].game_global_sale) + rect.marginH + font.margin + 5).attr("y", (rect.marginV + rect.height) * i + rect.marginT + 12)
                         .attr("id", "num")
                         .transition()
                         .delay(300)
@@ -135,7 +135,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
                 rects.data(dataValue, d => d.publisher).transition().duration(600).attr("y", (_, i) => (rect.marginV + rect.height) * i + rect.marginT).attr("width", d => scale(d.total_global_sale));
                 for (let i = 0; i < dataValue.length; i++) {
                     svg.append("text")
-                        .attr("x", scale(dataValue[i].total_global_sale) + rect.marginH + font.margin).attr("y", (rect.marginV + rect.height) * i + rect.marginT + 12)
+                        .attr("x", scale(dataValue[i].total_global_sale) + rect.marginH + font.margin + 5).attr("y", (rect.marginV + rect.height) * i + rect.marginT + 12)
                         .attr("id", "num")
                         .transition()
                         .delay(300)
@@ -148,7 +148,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
                 rects.data(dataValue, d => d.publisher).transition().duration(600).attr("y", (_, i) => (rect.marginV + rect.height) * i + rect.marginT).attr("width", d => scale(d.average_global_sale));
                 for (let i = 0; i < dataValue.length; i++) {
                     svg.append("text")
-                        .attr("x", scale(dataValue[i].average_global_sale) + rect.marginH + font.margin).attr("y", (rect.marginV + rect.height) * i + rect.marginT + 12)
+                        .attr("x", scale(dataValue[i].average_global_sale) + rect.marginH + font.margin + 5).attr("y", (rect.marginV + rect.height) * i + rect.marginT + 12)
                         .attr("id", "num")
                         .transition()
                         .delay(300)
@@ -161,7 +161,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
                 rects.data(dataValue, d => d.publisher).transition().duration(600).attr("y", (_, i) => (rect.marginV + rect.height) * i + rect.marginT).attr("width", d => scale(d.average_user_score));
                 for (let i = 0; i < dataValue.length; i++) {
                     svg.append("text")
-                        .attr("x", scale(dataValue[i].average_user_score) + rect.marginH + font.margin).attr("y", (rect.marginV + rect.height) * i + rect.marginT + 12)
+                        .attr("x", scale(dataValue[i].average_user_score) + rect.marginH + font.margin + 5).attr("y", (rect.marginV + rect.height) * i + rect.marginT + 12)
                         .attr("id", "num")
                         .transition()
                         .delay(300)
@@ -174,7 +174,7 @@ d3.json("https://raw.githubusercontent.com/UW-CSE442-WI20/A3-game-dev-pubg/maste
                 rects.data(dataValue, d => d.publisher).transition().duration(600).attr("y", (_, i) => (rect.marginV + rect.height) * i + rect.marginT).attr("width", d => scale(d.average_critic_score));
                 for (let i = 0; i < dataValue.length; i++) {
                     svg.append("text")
-                        .attr("x", scale(dataValue[i].average_critic_score) + rect.marginH + font.margin).attr("y", (rect.marginV + rect.height) * i + rect.marginT + 12)
+                        .attr("x", scale(dataValue[i].average_critic_score) + rect.marginH + font.margin + 5).attr("y", (rect.marginV + rect.height) * i + rect.marginT + 12)
                         .attr("id", "num")
                         .transition()
                         .delay(300)
