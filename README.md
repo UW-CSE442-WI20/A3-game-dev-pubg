@@ -48,6 +48,7 @@ From the reading *39 studies about human perception in 30 minutes*, we learned t
 - **Haoran Yu** - web designer, testing
 - **Yao Dou** - web designer, testing
 - **Bowen Xu** - data preparation, visual designs
+We each worked 12+ hours on average. 
 
 ### Sources
 
